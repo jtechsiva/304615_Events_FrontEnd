@@ -1,14 +1,18 @@
 mat-form-field {
-    width: 60%;
+    width: 90%;
   }
 
-  .page-header{
-    background-color: blue;
+  .example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
   }
-
+  
+  
   mat-form-field.mat-form-field {
     font-size: 13px;
   }
   button{
     font-size: 13px;
   }
+
+ 

@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -15,6 +16,10 @@ export class UserService {
 
   noAuthHeader = {headers: new HttpHeaders({'NoAuth' : 'True' })};
 
+  private _refreshNeeded = new Subject<void>();
+
+  @Output() public loggedUser = new EventEmitter<User>();
+  
   constructor(private httpClient: HttpClient) { }
 
   // private handleError<T> (operation = 'operation', result?: T) {
@@ -45,7 +50,13 @@ export class UserService {
   }
 
   getUserProfile(){
-    return this.httpClient.get(environment.apiBaseUrl +'/userProfile');
+    //return this.httpClient.get(environment.apiBaseUrl +'/userProfile');
+    return this.httpClient.get(environment.apiBaseUrl +'/userProfile')
+    .pipe(
+      tap (() => {
+        this._refreshNeeded.next();
+      }) 
+    );
   }
 
   getUser(userId: string){
@@ -77,9 +88,8 @@ export class UserService {
 
   getUserPayload(){
     var token = this.getToken();
-
     if(token){
-      var userPayload = atob(token.split('.')[1]);
+      var userPayload = atob(token.split('.')[1]);       
       return JSON.parse(userPayload);
     }
     else
@@ -92,5 +102,9 @@ export class UserService {
       return userPayload.exp > Date.now()/1000;
     else
       return null;
+  }
+
+  get refreshNeeded(){
+    return this._refreshNeeded;
   }
 }

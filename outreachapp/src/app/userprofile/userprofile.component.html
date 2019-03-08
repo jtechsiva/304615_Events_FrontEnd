@@ -5,27 +5,43 @@
 
         <form [formGroup]="userProfileForm">
           <mat-form-field>
-            <!-- <input matInput placeholder="First Name" #firstName formControlName="firstName"  required> -->
-            <input matInput  placeholder="First Name" formControlName="firstName" required>
+             <input matInput  placeholder="First Name" appControlFirstChar="firstName"  maxlength="20" formControlName="firstName" required>
+             <mat-error *ngIf="userProfileForm.get('firstName').touched && 
+             hasError('firstName', 'notAChar')">First letter should be a character</mat-error>
+           </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Last Name" appControlFirstChar="lastName" maxlength="20" formControlName="lastName"  required>
+            <mat-error *ngIf="userProfileForm.get('lastName').touched && 
+            hasError('lastName', 'notAChar')">First letter should be a character</mat-error>
+         </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Email ID" maxlength="30" formControlName="email"  required>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Last Name" formControlName="lastName"  required>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Email ID" formControlName="email"  required>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Display Name" formControlName="displayName" required>
-          </mat-form-field>
-          <br>
-          <mat-radio-group class="example-radio-group" [(ngModel)]="selectedUserType" formControlName="userType">
-              <mat-radio-button class="example-radio-button" *ngFor="let uType of UserTypes" [value]="uType">
-                {{season}}
-              </mat-radio-button>
-          </mat-radio-group>  
-               
+            <input matInput placeholder="Display Name" maxlength="30" appControlFirstChar="displayName" formControlName="displayName" required>
+            <mat-error *ngIf="userProfileForm.get('displayName').touched && 
+            hasError('displayName', 'notAChar')">First letter should be a character</mat-error>
+         </mat-form-field>          
           <div>
-            <button mat-button [disabled]="!userProfileForm.valid" class="btn btn-primary" (click)="updateUser()" >Update</button>
+            <label>User Type: </label>
+            <mat-radio-group formControlName="role" [(ngModel)]="selectedUserType">
+                <mat-radio-button class="example-radio-button" *ngFor="let uType of UserTypes" value="{{uType}}">
+                  {{uType}}
+                </mat-radio-button> 
+            </mat-radio-group>
+          </div>        
+          <div>
+              <label>is User Active?: </label>
+              <mat-radio-group formControlName="userStatus" [(ngModel)]="uStatus">
+                  <mat-radio-button class="example-radio-button" *ngFor="let status of UserStatus" value="{{status}}">
+                    {{status}}
+                  </mat-radio-button> 
+              </mat-radio-group>
+            </div>  
+          <div>
+            <button mat-button [disabled]="!userProfileForm.valid" class="btn btn-primary" (click)="updateUser()" >Update</button> &nbsp;
+            <button mat-button class="btn btn-primary" (click)="resetForm()" >Reset</button> &nbsp;
+            <button mat-button class="btn btn-primary" routerLink="/userlist" >Cancel</button> 
           </div>
          
         </form>

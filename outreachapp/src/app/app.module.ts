@@ -24,7 +24,11 @@ import {
   MatNativeDateModule,
   MatPaginatorModule,
   MatSortModule,
-  MatRadioModule
+  MatRadioModule,
+  MatSlideToggle,
+  MatSlideToggleModule,
+  MatTabsModule,
+  MatAutocompleteModule
 } from '@angular/material';
 
 import { RegistrationComponent } from './registration/registration.component';
@@ -39,7 +43,16 @@ import { AuthInterceptor } from 'src/app/auth/auth.interspector';
 import { UserListComponent } from './user-list/user-list.component';
 import { UpdateUserComponent } from './user/update-user/update-user.component';
 import { CompareControlValidatorDirective } from './shared/compare-control-validator.directive';
-
+import { MessageComponent } from './message/message.component';
+import { ControlFirstCharDirective } from './shared/check-first-char.directive';
+import { EventComponent } from './event/event.component';
+import { CreateEventComponent } from './event/create-event/create-event.component';
+import { EditEventComponent } from './event/edit-event/edit-event.component';
+import { EventService } from './shared/event.service';
+import { EventListComponent } from './event-list/event-list.component';
+import { VolRegComponent } from './vol-reg/vol-reg.component';
+import { CreateBulkEventComponent } from './event/create-bulk-event/create-bulk-event.component';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +66,15 @@ import { CompareControlValidatorDirective } from './shared/compare-control-valid
     UserprofileComponent,
     UserListComponent,
     UpdateUserComponent,
-    CompareControlValidatorDirective
+    CompareControlValidatorDirective,
+    ControlFirstCharDirective,
+    MessageComponent,
+    EventComponent,
+    CreateEventComponent,
+    EditEventComponent,
+    EventListComponent,
+    VolRegComponent,
+    CreateBulkEventComponent
   ],
   imports: [
     BrowserModule,
@@ -66,13 +87,14 @@ import { CompareControlValidatorDirective } from './shared/compare-control-valid
     MatProgressSpinnerModule,MatDividerModule,MatFormFieldModule ,
     MatProgressBarModule, MatStepperModule ,MatDatepickerModule,
     MatNativeDateModule, MatPaginatorModule, MatRadioModule,
-    HttpClientModule, MatSortModule, 
+    HttpClientModule, MatSortModule,  MatSlideToggleModule,
+    MatTabsModule, MatSelectModule, MatCheckboxModule, MatAutocompleteModule,
     routing
   ],
   providers: [{provide: HTTP_INTERCEPTORS,
               useClass: AuthInterceptor,
               multi: true
-              }, UserService, AuthGuard],
+              }, UserService, EventService,  AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

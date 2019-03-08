@@ -20,6 +20,10 @@ export class SignUpComponent implements OnInit {
   private router: Router) { }
   
   ngOnInit() {
+    this.initialize();
+   }
+
+   initialize(){
     this.signupForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -31,9 +35,9 @@ export class SignUpComponent implements OnInit {
     });
    }
 
-  //  public hasError = (controlName: string, errorName: string) =>{
-  //   return this.signupForm.controls[controlName].hasError(errorName);
-  // }
+   public hasError = (controlName: string, errorName: string) =>{
+    return this.signupForm.controls[controlName].hasError(errorName);
+  }
 
    addUser(){
     if (this.signupForm.valid) {
@@ -52,5 +56,9 @@ export class SignUpComponent implements OnInit {
           }
         }
     )};
+  }
+
+  resetForm(){
+    this.initialize();
   }
 }

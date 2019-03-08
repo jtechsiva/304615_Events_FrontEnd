@@ -6,11 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'outreachapp';
+  title = 'Outreach Vlounterring App';
 
-  colors = [{id: 1, name: "Red"},
-            {id: 2, name: "Green"},
-            {id: 3, name: "Yeelow"}
-            ]
-  color = 2;
+ 
 }

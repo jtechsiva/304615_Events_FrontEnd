@@ -1,14 +1,14 @@
-mat-form-field {
-    width: 60%;
+
+  mat-form-field {
+    width: 90%;
   }
 
-  .page-header{
-    background-color: blue;
-  }
-
+  
   mat-form-field.mat-form-field {
     font-size: 13px;
   }
   button{
     font-size: 13px;
   }
+
+ 

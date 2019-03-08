@@ -8,8 +8,9 @@ mat-card{
     background-color: aliceblue;
 }
 
-  mat-form-field.mat-form-field {
-    font-size: 13px;
-  }
-
- 
+mat-form-field.mat-form-field {
+  font-size: 13px;
+}
+button{
+  font-size: 13px;
+}

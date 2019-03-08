@@ -20,7 +20,7 @@ export class UserListComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
   
     userData: MatTableDataSource<User> ;
-    userDetail: User;
+   
 
     displayedColumns: string[] = ['firstName','lastName', 'displayName', 'email', 'action'];
   
@@ -42,19 +42,19 @@ export class UserListComponent implements OnInit {
     this.userData.filter = filterValue.trim().toLowerCase();
     }
     
-    applyFilterByColumn(filterColumn: string, filterValue: string) {
-      const tableFilters = [];
-      tableFilters.push({filterColumn: filterColumn});
-      //tableFilters.push({value: filterValue});
+    // applyFilterByColumn(filterColumn: string, filterValue: string) {
+    //   const tableFilters = [];
+    //   tableFilters.push({filterColumn: filterColumn});
+    //   //tableFilters.push({value: filterValue});
      
   
-      console.log('filterColumn: ' + tableFilters);
+    //   console.log('filterColumn: ' + tableFilters);
   
-      this.userData.filter = JSON.stringify(tableFilters);
-      if (this.userData.paginator) {
-        this.userData.paginator.firstPage();
-      }
-    }
+    //   this.userData.filter = JSON.stringify(tableFilters);
+    //   if (this.userData.paginator) {
+    //     this.userData.paginator.firstPage();
+    //   }
+    // }
 
     editUser(userId: string){
       console.log('User ID: ' + userId);
@@ -65,8 +65,8 @@ export class UserListComponent implements OnInit {
     deleteUser(userId: string){
       this.userService.deleteUserDet(userId).subscribe(
         res => { console.log( 'User ' + userId + " has been deleted successfully.");
-        this.getUserList(); 
-        },
+        this.router.navigate(['/message/M003']);
+      },
         err => { console.log('Error in User delete: ' + userId);}               
       );
     }   
