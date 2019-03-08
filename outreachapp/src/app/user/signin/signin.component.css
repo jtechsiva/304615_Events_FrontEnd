@@ -1,0 +1,15 @@
+mat-form-field {
+    width: 80%;
+  }
+
+mat-card{
+    /* max-width: 400px; */
+    text-align: center;
+    background-color: aliceblue;
+}
+
+  mat-form-field.mat-form-field {
+    font-size: 13px;
+  }
+
+ 

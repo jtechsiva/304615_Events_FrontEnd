@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="signupForm">
+        <mat-form-field>
+          <input matInput placeholder="First Name" formControlName="firstName"  required>
+        </mat-form-field>
+        <!-- <mat-error>
+          <span *ngIf="!signupForm.get('firstName').valid && 
+          signupForm.get('firstName').touched">First Name can't be empty.</span>
+        </mat-error> -->
+        <mat-form-field>
+          <input matInput placeholder="Last Name" formControlName="lastName"  required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email ID" formControlName="email"  required>
+          <!-- <mat-error *ngIf="hasError('email', 'email')">Enter a valid email</mat-error> -->
+        </mat-form-field>
+        <!-- <mat-error>
+          <span *ngIf="!signupForm.get('lastName').valid && 
+          signupForm.get('lastName').touched">Last Name can't be empty.</span>
+        </mat-error> -->
+        <mat-form-field>
+          <input matInput placeholder="Password" minlength="6" maxlength="10" id="password" formControlName="password" type="password"  required>
+        </mat-form-field>
+        <!-- <mat-error>
+          <span *ngIf="!signupForm.get('password').valid && 
+          signupForm.get('password').touched">Password can't be empty.</span>
+        </mat-error> -->
+        <mat-form-field>
+          <input matInput placeholder="Confirm Password" appCompareControlValidator='password' formControlName="confirmPassword" type="password"  required>
+          <mat-error *ngIf="signupForm.get('confirmPassword').touched && 
+                            !signupForm.get('confirmPassword').valid?.notEqual &&
+                            !signupForm.get('confirmPassword').valid?.required">Password and Confirm Password does not match</mat-error>
+        </mat-form-field>
+        <!-- <mat-error>
+          <span *ngIf="!signupForm.get('confirmPassword').valid && 
+          signupForm.get('confirmPassword').touched">Confirm Password can't be empty.</span>
+        </mat-error> -->
+        <mat-form-field>
+          <input matInput placeholder="Display Name" formControlName="displayName" required>
+        </mat-form-field>
+        <!-- <mat-error>
+          <span *ngIf="!signupForm.get('displayName').valid && 
+          signupForm.get('displayName').touched">Display Name can't be empty.</span>
+        </mat-error> -->
+        <div>
+          <button mat-button [disabled]="!signupForm.valid" class="btn btn-primary" (click)="addUser()" >Submit</button>
+        </div>
+        <div>
+        <div>
+          <span *ngIf="isSuccess">User has been added successfully.</span>
+        </div>
+        <mat-error>
+          <span *ngIf="!isSuccess">{{responseMessage}}</span>
+        </mat-error>
+        </div>
+      </form>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="container">
+    <!-- <form class="example-form"> -->
+    
+    <div class="row">
+        <div class="col-md-12">
+            <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+                {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+              </button> -->
+              <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                <mat-step [stepControl]="firstFormGroup">
+                  <form [formGroup]="firstFormGroup">
+                     
+                    <ng-template matStepLabel>New Login Details</ng-template>
+                    <mat-form-field>
+                        <input matInput placeholder="User Name"  required>
+                      </mat-form-field>
+                      <mat-form-field>
+                          <input matInput placeholder="Password"  required>
+                      </mat-form-field>
+                      <mat-form-field>
+                          <input matInput placeholder="Confirm Password"  required>
+                      </mat-form-field>
+                      <mat-form-field>
+                          <input matInput placeholder="Display Name" required>
+                        </mat-form-field>
+                        <div>
+                      <button mat-button class="btn btn-primary" matStepperNext>Next</button>
+                    </div>
+                  </form>
+                </mat-step>
+                <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                      <ng-template matStepLabel>Personal Detail</ng-template>
+                      <mat-form-field>
+                          <input matInput placeholder="First NAme" required>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input matInput placeholder="Last Name" required>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input matInput placeholder="Email Id" required>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input matInput placeholder="Primary Contact Number" required>
+                      </mat-form-field>
+                      <mat-form-field>
+                          <input matInput placeholder="Secondary Contact Number" required>
+                      </mat-form-field>
+                      <mat-form-field appearance="fill">
+                          <mat-label>Date of Birth</mat-label>
+                          <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY">
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                      <mat-form-field>
+                          <input matInput placeholder="Gender" required>
+                      </mat-form-field>
+                      <mat-form-field>
+                          <input matInput placeholder="Business Unit" required>
+                      </mat-form-field>
+                      <div>
+                        <button mat-button class="btn btn-primary" matStepperPrevious>Back</button>
+                        <button mat-button style="margin-left: 20px " class="btn btn-primary" matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="secondFormGroup">
+                      <ng-template matStepLabel>Address Detail</ng-template>
+                      <mat-form-field>
+                          <input matInput placeholder="Address 1" required>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input matInput placeholder="Address 2" required>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input matInput placeholder="City" required>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input matInput placeholder="State" required>
+                      </mat-form-field>
+                      <mat-form-field>
+                          <input matInput placeholder="Country" required>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input matInput placeholder="Zipcode" required>
+                      </mat-form-field>
+                      <div>
+                        <button mat-button class="btn btn-primary" matStepperPrevious>Back</button>
+                        <button mat-button style="margin-left: 20px " class="btn btn-primary" matStepperNext>Next</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step>
+                  <ng-template matStepLabel>Completed</ng-template>
+                      You are now done.
+                  <div>
+                    <button mat-button class="btn btn-primary" matStepperPrevious>Back</button>
+                    <button mat-button style="margin-left: 20px " class="btn btn-info" (click)="stepper.reset()">Reset</button>
+                  </div>
+                </mat-step>
+              </mat-horizontal-stepper>
+        </div>
+      </div>
+  <!-- </form> -->
+  </div>
